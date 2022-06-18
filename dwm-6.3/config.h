@@ -2,7 +2,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
-static const int gappx     = 5;                 /* gaps between windows */
+static const int gappx     = 10;                 /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
@@ -11,19 +11,18 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;     /* 0 means no bar */
 static const int topbar             = 1;     /* 0 means bottom bar */
-static const char *fonts[]          = { "Hack Nerd Font:size=10" };
-static const char dmenufont[]       = "Hack Nerd Font:size=10";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
-static const char col_cyan2[]       = "#81a2be";
-
-static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray1, col_cyan2,  col_cyan  },
+static char font[]                  = "Hack Nerd Font:size=10";
+static const char *fonts[]          = { font };
+static char normbgcolor[]           = "#222222";
+static char normbordercolor[]       = "#444444";
+static char normfgcolor[]           = "#bbbbbb";
+static char selfgcolor[]            = "#eeeeee";
+static char selbordercolor[]        = "#005577";
+static char selbgcolor[]            = "#005577";
+static char *colors[][3] = {
+       /*               fg           bg           border   */
+       [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
+       [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
 };
 
 /* tagging */
@@ -79,6 +78,19 @@ static const char *browsercmd[]  = { "firefox", NULL };
 static const char *volume_up[] = { "dwmblocks_volume", "up", NULL};
 static const char *volume_down[] = { "dwmblocks_volume", "down", NULL};
 static const char *volume_mute[] = { "dwmblocks_volume", "mute", NULL};
+
+
+/* Xresources preferences to load at startup */
+ResourcePref resources[] = {
+    { "font",               STRING,  &font },
+    { "normbgcolor",        STRING,  &normbgcolor },
+    { "normbordercolor",    STRING,  &normbordercolor },
+    { "normfgcolor",        STRING,  &normfgcolor },
+    { "selbgcolor",         STRING,  &selbgcolor },
+    { "selbordercolor",     STRING,  &selbordercolor },
+    { "selfgcolor",         STRING,  &selfgcolor },
+};
+
 
 #include "movestack.c"
 static Key keys[] = {
